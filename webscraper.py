@@ -78,6 +78,7 @@ class CourseGetter:
 
                 self.courses.append(Course(cCode, name, description, equates, semesters, restrictions, offerings, creditWeight, department, prereqs))
 
-x = CourseGetter()
-x.start()
-x.getData()
+if __name__ == "__main__":
+    x = CourseGetter()
+    x.start()
+    x.getData()
