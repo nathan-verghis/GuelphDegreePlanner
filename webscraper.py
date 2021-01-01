@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 from course import Course
+import json
 
 
 class CourseGetter:
@@ -16,7 +17,6 @@ class CourseGetter:
 
     def getData(self):
 
-        # 
         div = self.bot.find_element_by_class_name("subnav")
         ul = div.find_elements_by_css_selector("ul")[1]
         ul = ul.find_elements_by_css_selector("li")
@@ -78,7 +78,18 @@ class CourseGetter:
 
                 self.courses.append(Course(cCode, name, description, equates, semesters, restrictions, offerings, creditWeight, department, prereqs))
 
+    def write_data(self):
+        filedest = './courses.json'
+        tempList = []
+        for course in self.courses:
+            tempList.append(course.attributes)
+
+        bigDict = {'courses': tempList}
+        with open(filedest, 'w') as dest:
+            json.dump(bigDict, dest)
+
 if __name__ == "__main__":
     x = CourseGetter()
     x.start()
     x.getData()
+    x.write_data()
