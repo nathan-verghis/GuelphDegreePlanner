@@ -25,22 +25,52 @@ def format_strings(course):
     
     # Formatting restrictions
     temp = " "
+    temp1 = " "
     tempSplit = " "
     tempSplit2 = " "
     rest = " "
     rest = course['restrictions']
 
     # for priority access course
-    temp = rest.split("This")
-    
-    # for Instructor consent 
-    tempSplit = temp[0].split("Instructor")
-    tempSplit2 = tempSplit[0]
-    tempSplit2.strip()
-    tempSplit2.split(", ")
+    try:
+        temp = rest.split("This")
+    except Exception:
+        temp = rest
 
+    # for Instructor consent 
+    try:
+        tempSplit = temp[0].split("Instructor")
+        tempSplit2 = tempSplit[0]
+        tempSplit2.strip()
+        temp = tempSplit2.split(", ")
+    except Exception:
+        pass
+
+        
+
+    # for general case 
+
+    try:
+        # GETTING RID OF UNNECESSARY ENTRIES
+        
+        temp1 = temp.split("Restricted")
+        temp = temp1[0]
+
+        #Restricted
+
+        # Breaking up the actual course codes
+        temp.strip()
+        temp.split(", ")
+        
+    except Exception:
+        pass
+
+    
     #tempSplit2 as final list of courses required? still need to solve priority 
     #access and instructor access issues ... possible as booleans?
+    print(name)
+    print(temp)
+    print(" ")
 
 
 
