@@ -31,36 +31,43 @@ def format_strings(course):
     rest = " "
     rest = course['restrictions']
 
+    #TODO: STORE RESULTS 
+    prio = False
+    cons = False
+    restric = False
+
     # for priority access course
     try:
         temp = rest.split("This")
+        temp = temp[0]
+        prio = True
     except Exception:
         temp = rest
 
     # for Instructor consent 
     try:
-        tempSplit = temp[0].split("Instructor")
+        tempSplit = temp.split("Instructor")
         tempSplit2 = tempSplit[0]
-        tempSplit2.strip()
-        temp = tempSplit2.split(", ")
+        temp = tempSplit2
+        cons = True
     except Exception:
         pass
 
-        
+    # for Restricted    
+    try:
+        temp1 = temp.split("Restricted")
+        temp = temp1[0]
+        restric = True
+    except Exception:
+        pass
+
 
     # for general case 
 
     try:
-        # GETTING RID OF UNNECESSARY ENTRIES
-        
-        temp1 = temp.split("Restricted")
-        temp = temp1[0]
-
-        #Restricted
-
         # Breaking up the actual course codes
-        temp.strip()
-        temp.split(", ")
+        temp = temp.strip()
+        temp = temp.split(", ")
         
     except Exception:
         pass

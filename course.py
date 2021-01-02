@@ -11,3 +11,5 @@ class Course:
         self.creditWeight = creditWeight
         self.department = department
         self.prereqs = prereqs'''
+        
+
